@@ -8,7 +8,7 @@ import sqlite3
 
 from constants import ERROR_MSG_AUTHORIZATION_FAIL, ERROR_MSG_DATA_VALIDATION_FAIL
 
-valid_locs = set(range(14))
+valid_locs = set(range(15))
 # Obviously this can be made to specifically grab members worlds
 valid_worlds = {n for n in range(301, 581)}
 
