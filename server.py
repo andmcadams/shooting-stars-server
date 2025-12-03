@@ -5,6 +5,8 @@ import falcon
 from wsgiref.simple_server import make_server
 
 from base_shooting_stars_resource import BaseShootingStarsResource
+os.environ['SHOOTING_STARS_DB'] = '/home/ubuntu/shooting-stars-server/stars.db'
+os.environ['SHOOTING_STARS_PORT'] = '8000'
 
 
 def create_app(conn: sqlite3.Connection, clazz):
@@ -20,11 +22,7 @@ def create_app(conn: sqlite3.Connection, clazz):
     return app
 
 
-if __name__ == '__main__':
-    server_conn = sqlite3.connect(os.environ['SHOOTING_STARS_DB'])
-    server_conn.row_factory = sqlite3.Row
-    with make_server('', int(os.environ['SHOOTING_STARS_PORT']), create_app(server_conn, BaseShootingStarsResource)) as httpd:
-        print(f'Serving on port {os.environ["SHOOTING_STARS_PORT"]}...')
-
-        # Serve until process is killed
-        httpd.serve_forever()
+server_conn = sqlite3.connect(os.environ['SHOOTING_STARS_DB'])
+server_conn.row_factory = sqlite3.Row
+app = create_app(server_conn, BaseShootingStarsResource)
+print(f'Serving on port {os.environ["SHOOTING_STARS_PORT"]}...')
