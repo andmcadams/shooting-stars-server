@@ -10,7 +10,7 @@ from constants import ERROR_MSG_AUTHORIZATION_FAIL, ERROR_MSG_DATA_VALIDATION_FA
 
 valid_locs = set(list(range(14)) + [15])
 # Obviously this can be made to specifically grab members worlds
-valid_worlds = {n for n in range(301, 581)}
+valid_worlds = {n for n in range(301, 687)}
 
 
 def hook_validate_data(req: falcon.request.Request, resp: falcon.response.Response, resource, params):
